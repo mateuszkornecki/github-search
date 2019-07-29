@@ -22,6 +22,8 @@ html {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     background: $gradient;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     &--second {
         grid-template-rows: 1fr 3fr 0.5fr;
         grid-template-areas: "first" "second" "third";
@@ -93,13 +95,31 @@ html {
     grid-area: third;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
     max-width: 720px;
     width: 100%;
     height: 100%;
     background: white;
     border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+}
+
+.repo {
+    border-radius: 1rem;
+    // border: 1px solid ;
     padding: 1rem;
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    &__title {
+        margin-top: 0;
+    }
+    &__link {
+        text-decoration: none;
+        color: #FBB03B;
+        &:hover {
+            color: #D4145A;
+        }
+    }
 }
 
 .search {
