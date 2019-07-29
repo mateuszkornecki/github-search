@@ -99,11 +99,7 @@ html {
     background: white;
     border-radius: 0.5rem;
     padding: 1rem;
-    &__avatar {
-        width: 100px;
-        height: 100px;
-        background: hotpink;
-    }
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
 
 .search {
@@ -133,6 +129,7 @@ html {
         }
         &--second {
             margin: 1rem 0;
+            font-size: 1rem;
         }
     }
 }
