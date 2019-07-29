@@ -17,21 +17,28 @@ html {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr;
-    grid-template-areas: "." "header" "main" "." "footer";
+    grid-template-areas: "first" "second" "third" "forth" "fifth";
     align-items: center;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     background: $gradient;
+    &--second {
+        grid-template-rows: 1fr 3fr 0.5fr;
+        grid-template-areas: "first" "second" "third";
+    }
 }
 
 .footer {
-    grid-area: footer;
+    grid-area: fifth;
     width: 100%;
     height: 100%;
     padding: 0 1rem 1rem;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    &--second {
+        grid-area: third;
+    }
     &__container {
         max-width: 720px;
         width: 100%;
@@ -47,7 +54,10 @@ html {
 }
 
 .header {
-    grid-area: header;
+    grid-area: second;
+    &--second {
+        grid-area: first;
+    }
     &__heading {
         display: flex;
         align-items: center;
@@ -56,6 +66,9 @@ html {
         font-weight: 700;
         font-size: 4.5rem;
         margin: 0;
+        &--second {
+            font-size: 2.5rem;
+        }
     }
     &__link {
         color: black;
@@ -64,16 +77,44 @@ html {
 }
 
 .main {
-    grid-area: main;
+    grid-area: third;
     width: 100%;
+    height: 100%;
     padding: 1rem;
+    &--second {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        grid-area: second;
+    }
+}
+
+.profile {
+    grid-area: third;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 720px;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    &__avatar {
+        width: 100px;
+        height: 100px;
+        background: hotpink;
+    }
 }
 
 .search {
+    grid-area: second;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    &--second {
+        justify-content: flex-start;
+    }
     &__description {
         font-size: 0.75rem;
     }
@@ -89,6 +130,9 @@ html {
         box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
         &::placeholder {
             font-weight: 400;
+        }
+        &--second {
+            margin: 1rem 0;
         }
     }
 }
