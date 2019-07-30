@@ -14,19 +14,18 @@ const profileBuilder = () => {
             console.log(owner.name);
             console.log(owner.avatar_url);
             //TODO: print repo owner name
-            //? check if i need 2x section here
             const ownerSection = document.createElement('section');
-            const h2 = document.createElement('h2');
-            const avatar = document.createElement('img');
+            const ownerName = document.createElement('h2');
+            const ownerAvatar = document.createElement('img');
             ownerSection.className = 'owner';
-            h2.className = 'owner__login';
-            avatar.className = "owner__avatar";
-            avatar.src = owner.avatar_url;
-            avatar.alt = `${owner.name} avatar`;
+            ownerName.className = 'owner__name';
+            ownerAvatar.className = "owner__avatar";
+            ownerAvatar.src = owner.avatar_url;
+            ownerAvatar.alt = `${owner.name} avatar`;
             profilePage.appendChild(ownerSection);
-            ownerSection.appendChild(h2);
-            ownerSection.appendChild(avatar);
-            h2.innerHTML = owner.login;
+            ownerSection.appendChild(ownerName);
+            ownerSection.appendChild(ownerAvatar);
+            ownerName.innerHTML = owner.name;
 
         })
         .catch(err => {
@@ -39,21 +38,21 @@ const profileBuilder = () => {
             let repos = resp;
             repos.forEach(repo => {
 
-                const section = document.createElement('section');
-                const h3 = document.createElement('h3');
-                const p = document.createElement('p');
-                const span = document.createElement('span');
-                section.className = 'repo';
-                h3.className = 'repo__title';
-                p.className = 'repo__description';
-                span.className = 'repo__language';
-                profilePage.appendChild(section);
-                section.appendChild(h3);
-                section.appendChild(p);
-                section.appendChild(span);
-                h3.innerHTML = `<a class="repo__link" href="${repo.svn_url}">${repo.name}</a>`;
-                span.innerHTML = repo.language;
-                p.innerHTML = repo.description;
+                const repoSection = document.createElement('section');
+                const repoName = document.createElement('h3');
+                const repoDescription = document.createElement('p');
+                const repoLanguage = document.createElement('span');
+                repoSection.className = 'repo';
+                repoName.className = 'repo__title';
+                repoDescription.className = 'repo__description';
+                repoLanguage.className = 'repo__language';
+                profilePage.appendChild(repoSection);
+                repoSection.appendChild(repoName);
+                repoSection.appendChild(repoDescription);
+                repoSection.appendChild(repoLanguage);
+                repoName.innerHTML = `<a class="repo__link" href="${repo.svn_url}">${repo.name}</a>`;
+                repoLanguage.innerHTML = repo.language;
+                repoDescription.innerHTML = repo.description;
                 localStorage.removeItem('User Name');
             })
         })
