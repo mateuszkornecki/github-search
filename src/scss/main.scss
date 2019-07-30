@@ -12,7 +12,7 @@ html {
 }
 
 .body {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -25,7 +25,7 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
     &--second {
-        grid-template-rows: 1fr 3fr 0.5fr;
+        grid-template-rows: 200px 1fr minmax(50px, auto);
         grid-template-areas: "first" "second" "third";
     }
 }
@@ -34,7 +34,7 @@ html {
     grid-area: fifth;
     width: 100%;
     height: 100%;
-    padding: 0 1rem 1rem;
+    padding: 0 2rem 1rem;
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -59,6 +59,8 @@ html {
     grid-area: second;
     &--second {
         grid-area: first;
+        height: 100%;
+        padding: 2rem 2rem 0;
     }
     &__heading {
         display: flex;
@@ -79,10 +81,10 @@ html {
 }
 
 .main {
-    grid-area: third;
-    width: 100%;
     height: 100%;
-    padding: 1rem;
+    grid-area: third;
+    min-width: 100%;
+    padding: 2rem 2rem 1rem;
     &--second {
         display: flex;
         flex-direction: column;
@@ -95,8 +97,8 @@ html {
     display: flex;
     margin-bottom: 2rem;
     &__avatar {
-        max-width: 100px;
-        max-height: 100px;
+        max-width: 150px;
+        max-height: 150px;
     }
     &__text-wrapper {
         padding: 0 2rem;
@@ -104,7 +106,6 @@ html {
 }
 
 .profile {
-    grid-area: third;
     max-width: 720px;
     width: 100%;
     height: 100%;
@@ -116,12 +117,12 @@ html {
 
 .repos {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
     grid-gap: 1rem;
 }
 
 .repo {
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     padding: 1rem;
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
     &__title {
@@ -149,7 +150,7 @@ html {
         font-size: 0.75rem;
     }
     &__input {
-        max-width: 20rem;
+        max-width: 22rem;
         width: 100%;
         padding: 0 1rem;
         margin: 4rem 0;
