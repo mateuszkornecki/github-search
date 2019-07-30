@@ -4,6 +4,10 @@
 html {
     box-sizing: border-box;
     min-height: 100vh;
+    background: $gradient;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 *,
@@ -24,9 +28,6 @@ html {
     grid-template-areas: "first" "second" "third" "forth" "fifth";
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    background: $gradient;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     &--second {
         grid-template-rows: 200px 1fr minmax(50px, auto);
         grid-template-areas: "first" "second" "third";
