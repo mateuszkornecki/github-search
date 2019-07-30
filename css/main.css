@@ -319,7 +319,7 @@ html {
           box-sizing: inherit; }
 
 .body {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -339,8 +339,8 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed; }
   .body--second {
-    -ms-grid-rows: 1fr 3fr 0.5fr;
-    grid-template-rows: 1fr 3fr 0.5fr;
+    -ms-grid-rows: 200px 1fr minmax(50px, auto);
+    grid-template-rows: 200px 1fr minmax(50px, auto);
         grid-template-areas: "first" "second" "third"; }
 
 .footer {
@@ -349,7 +349,7 @@ html {
   grid-area: fifth;
   width: 100%;
   height: 100%;
-  padding: 0 1rem 1rem;
+  padding: 0 2rem 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -392,7 +392,9 @@ html {
   .header--second {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
-    grid-area: first; }
+    grid-area: first;
+    height: 100%;
+    padding: 2rem 2rem 0; }
   .body--second > .header--second {
   -ms-grid-row: 1;
   -ms-grid-column: 1; }
@@ -419,10 +421,10 @@ html {
 .main {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
-  grid-area: third;
-  width: 100%;
   height: 100%;
-  padding: 1rem; }
+  grid-area: third;
+  min-width: 100%;
+  padding: 2rem 2rem 1rem; }
 
 .body--second > .main {
   -ms-grid-row: 3;
@@ -451,15 +453,12 @@ html {
   display: flex;
   margin-bottom: 2rem; }
   .owner__avatar {
-    max-width: 100px;
-    max-height: 100px; }
+    max-width: 150px;
+    max-height: 150px; }
   .owner__text-wrapper {
     padding: 0 2rem; }
 
 .profile {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1;
-  grid-area: third;
   max-width: 720px;
   width: 100%;
   height: 100%;
@@ -469,19 +468,14 @@ html {
   -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
           box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); }
 
-.body--second > .profile {
-  -ms-grid-row: 3;
-  -ms-grid-column: 1; }
-
 .repos {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
   grid-gap: 1rem; }
 
 .repo {
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   padding: 1rem;
   -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
           box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); }
@@ -521,7 +515,7 @@ html {
   .search__description {
     font-size: 0.75rem; }
   .search__input {
-    max-width: 20rem;
+    max-width: 22rem;
     width: 100%;
     padding: 0 1rem;
     margin: 4rem 0;
