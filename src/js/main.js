@@ -45,6 +45,7 @@ if (profilePage && localStorage.getItem('User Name')) {
                 h2.innerHTML = `<a class="repo__link" href="${repo.svn_url}">${repo.name}</a>`;
                 span.innerHTML = repo.language;
                 p.innerHTML = repo.description;
+                localStorage.removeItem('User Name');
             })
         })
 
@@ -54,9 +55,10 @@ if (profilePage && localStorage.getItem('User Name')) {
         p.className = 'err';
         profilePage.appendChild(p);
         p.innerHTML = `Nie znaleziono użytkownika o nazwie <b> ${localStorage.getItem('User Name')} </b>`;
+        localStorage.removeItem('User Name');
 
     })
-    localStorage.removeItem('User Name');
+
 }
 //! warn
 
@@ -92,6 +94,7 @@ searchInput.addEventListener('keyup', (e) => {
                         h2.innerHTML = `<a class="repo__link" href="${repo.svn_url}">${repo.name}</a>`;
                         span.innerHTML = repo.language;
                         p.innerHTML = repo.description;
+                        localStorage.removeItem('User Name');
                     })
                 })
 
@@ -101,6 +104,7 @@ searchInput.addEventListener('keyup', (e) => {
                 p.className = 'err';
                 profilePage.appendChild(p);
                 p.innerHTML = `Nie znaleziono użytkownika o nazwie <b> ${localStorage.getItem('User Name')} </b>`;
+                localStorage.removeItem('User Name');
 
             })
 
