@@ -10,7 +10,7 @@ const profileBuilder = () => {
         .then(resp => resp.json())
         .then(resp => {
             let owner = resp;
-            if (owner.name != undefined) {
+            if (owner.login != undefined) {
                 const ownerSection = document.createElement('section');
                 const ownerAvatar = document.createElement('img');
                 const ownerTextWrapper = document.createElement('div');
@@ -49,7 +49,6 @@ const profileBuilder = () => {
             repositories.classList.add('repos', 'repos--js');
             profilePage.appendChild(repositories);
             repos.forEach(repo => {
-
                 const repoSection = document.createElement('section');
                 const repoName = document.createElement('h3');
                 const repoDescription = document.createElement('p');
@@ -78,13 +77,13 @@ const profileBuilder = () => {
         })
 }
 
-//! if you are on second.html localStorage exist then print it
+//! if you are on second.html and localStorage record exist then print it
 if (profilePage && localStorage.getItem('User Name')) {
     profileBuilder();
 }
 
 searchInput.addEventListener('keyup', (e) => {
-    //! if enter is pressed print userName
+    //! if enter is pressed print profile
     let userName = searchInput.value;
     if (e.keyCode === 13) {
         localStorage.setItem('User Name', userName);
