@@ -12,7 +12,9 @@ html {
 }
 
 .body {
+    /* Fallback for browsers that do not support Custom Properties */
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -24,7 +26,6 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
     &--second {
-        max-height: 100vh;
         grid-template-rows: 200px 1fr minmax(50px, auto);
         grid-template-areas: "first" "second" "third";
     }
@@ -60,6 +61,7 @@ html {
     display: flex;
     justify-content: center;
     &--second {
+        flex-direction: column;
         grid-area: first;
         height: 100%;
         padding: 2rem 2rem 0;
@@ -67,14 +69,12 @@ html {
     &__heading {
         font-weight: 700;
         font-size: 4.5rem;
+        margin: 0;
         &--second {
             font-size: 2.5rem;
         }
         @media(max-width: $mobile) {
-            font-size: 3rem;
-        }
-        @media(max-width: 350px) {
-            font-size: 2.5rem;
+            font-size: 10vw;
         }
     }
     &__link {
