@@ -1,24 +1,7 @@
 "use strict";
 
-// service worker registration - remove if you're not going to use it
-
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('serviceworker.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
-        });
-    });
-}
-
-// place your code below
-
 const searchInput = document.querySelector('.search__input--js');
 const profilePage = document.querySelector('.profile--js');
-
 const profileBuilder = () => {
     profilePage.innerHTML = '';
     searchInput.value = localStorage.getItem('User Name');
@@ -45,14 +28,13 @@ const profileBuilder = () => {
                 localStorage.removeItem('User Name');
             })
         })
-
-    .catch(err => {
-        const p = document.createElement('p');
-        p.className = 'err';
-        profilePage.appendChild(p);
-        p.innerHTML = `Nie znaleziono użytkownika o nazwie <b> ${localStorage.getItem('User Name')} </b>`;
-        localStorage.removeItem('User Name');
-    })
+        .catch(err => {
+            const p = document.createElement('p');
+            p.className = 'err';
+            profilePage.appendChild(p);
+            p.innerHTML = `Nie znaleziono użytkownika o nazwie <b> ${localStorage.getItem('User Name')} </b>`;
+            localStorage.removeItem('User Name');
+        })
 }
 
 //! if you are on second.html localStorage exist then print it
@@ -69,7 +51,6 @@ searchInput.addEventListener('keyup', (e) => {
         if (profilePage) {
             profileBuilder();
         } else {
-            //TODO after pressing ENTER open second.html 
             //? "_top" - need to read more about that
             window.open("second.html", "_top");
         }
