@@ -107,7 +107,7 @@ searchInput.addEventListener('keyup', (e) => {
         } else {
             //TODO after pressing ENTER open second.html 
             //? "_top" - need to read more about that
-            window.open("/second.html", "_top");
+            window.open("second.html", "_top");
             //TODO AND search for input.value 
         }
     }
