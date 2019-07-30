@@ -19,17 +19,14 @@ if ('serviceWorker' in navigator) {
 const searchInput = document.querySelector('.search__input--js');
 const profilePage = document.querySelector('.profile--js');
 
-//! if you are on second.html localStorage exist then print it
-if (profilePage && localStorage.getItem('User Name')) {
+const profileBuilder = () => {
     profilePage.innerHTML = '';
     searchInput.value = localStorage.getItem('User Name');
     fetch(`https://api.github.com/users/${localStorage.getItem('User Name')}/repos?sort=full_name&direction=asc`)
         .then(resp => resp.json())
         .then(resp => {
             let repos = resp;
-            console.log(repos);
             repos.forEach(repo => {
-                console.log(repo.name);
                 const section = document.createElement('section');
                 const h2 = document.createElement('h2');
                 const p = document.createElement('p');
@@ -50,19 +47,18 @@ if (profilePage && localStorage.getItem('User Name')) {
         })
 
     .catch(err => {
-        console.log(err);
         const p = document.createElement('p');
         p.className = 'err';
         profilePage.appendChild(p);
         p.innerHTML = `Nie znaleziono użytkownika o nazwie <b> ${localStorage.getItem('User Name')} </b>`;
         localStorage.removeItem('User Name');
-
     })
-
 }
-//! warn
 
-
+//! if you are on second.html localStorage exist then print it
+if (profilePage && localStorage.getItem('User Name')) {
+    profileBuilder();
+}
 
 searchInput.addEventListener('keyup', (e) => {
     //! if enter is pressed print userName
@@ -71,48 +67,11 @@ searchInput.addEventListener('keyup', (e) => {
         console.log(userName);
         localStorage.setItem('User Name', userName);
         if (profilePage) {
-            profilePage.innerHTML = '';
-            fetch(`https://api.github.com/users/${localStorage.getItem('User Name')}/repos?sort=full_name&direction=asc`)
-                .then(resp => resp.json())
-                .then(resp => {
-                    let repos = resp;
-                    console.log(repos);
-                    repos.forEach(repo => {
-                        console.log(repo.name);
-                        const section = document.createElement('section');
-                        const h2 = document.createElement('h2');
-                        const p = document.createElement('p');
-                        const span = document.createElement('span');
-                        section.className = 'repo';
-                        h2.className = 'repo__title';
-                        p.className = 'repo__description';
-                        span.className = 'repo__language';
-                        profilePage.appendChild(section);
-                        section.appendChild(h2);
-                        section.appendChild(p);
-                        section.appendChild(span);
-                        h2.innerHTML = `<a class="repo__link" href="${repo.svn_url}">${repo.name}</a>`;
-                        span.innerHTML = repo.language;
-                        p.innerHTML = repo.description;
-                        localStorage.removeItem('User Name');
-                    })
-                })
-
-            .catch(err => {
-                console.log(err);
-                const p = document.createElement('p');
-                p.className = 'err';
-                profilePage.appendChild(p);
-                p.innerHTML = `Nie znaleziono użytkownika o nazwie <b> ${localStorage.getItem('User Name')} </b>`;
-                localStorage.removeItem('User Name');
-
-            })
-
+            profileBuilder();
         } else {
             //TODO after pressing ENTER open second.html 
             //? "_top" - need to read more about that
             window.open("second.html", "_top");
-            //TODO AND search for input.value 
         }
     }
 })
