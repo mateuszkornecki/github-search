@@ -311,7 +311,13 @@ template {
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  min-height: 100vh; }
+  min-height: 100vh;
+  background: -webkit-linear-gradient(39.91deg, #D4145A 4.38%, #FBB03B 85.8%);
+  background: -o-linear-gradient(39.91deg, #D4145A 4.38%, #FBB03B 85.8%);
+  background: linear-gradient(50.09deg, #D4145A 4.38%, #FBB03B 85.8%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed; }
 
 *,
 *:before,
@@ -332,12 +338,7 @@ html {
   grid-template-columns: 1fr;
       grid-template-areas: "first" "second" "third" "forth" "fifth";
   font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  background: -webkit-linear-gradient(39.91deg, #D4145A 4.38%, #FBB03B 85.8%);
-  background: -o-linear-gradient(39.91deg, #D4145A 4.38%, #FBB03B 85.8%);
-  background: linear-gradient(50.09deg, #D4145A 4.38%, #FBB03B 85.8%);
-  background-repeat: no-repeat;
-  background-attachment: fixed; }
+  font-weight: 400; }
   .body--second {
     -ms-grid-rows: 200px 1fr minmax(50px, auto);
     grid-template-rows: 200px 1fr minmax(50px, auto);
