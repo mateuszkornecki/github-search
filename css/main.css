@@ -445,6 +445,10 @@ html {
   -ms-grid-row: 2;
   -ms-grid-column: 1; }
 
+.owner__avatar {
+  max-width: 100px;
+  max-height: 100px; }
+
 .profile {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
