@@ -319,7 +319,9 @@ html {
           box-sizing: inherit; }
 
 .body {
+  /* Fallback for browsers that do not support Custom Properties */
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -336,7 +338,6 @@ html {
   background-repeat: no-repeat;
   background-attachment: fixed; }
   .body--second {
-    max-height: 100vh;
     -ms-grid-rows: 200px 1fr minmax(50px, auto);
     grid-template-rows: 200px 1fr minmax(50px, auto);
         grid-template-areas: "first" "second" "third"; }
@@ -396,6 +397,10 @@ html {
   .header--second {
     -ms-grid-row: 1;
     -ms-grid-column: 1;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     grid-area: first;
     height: 100%;
     padding: 2rem 2rem 0; }
@@ -404,15 +409,13 @@ html {
   -ms-grid-column: 1; }
   .header__heading {
     font-weight: 700;
-    font-size: 4.5rem; }
+    font-size: 4.5rem;
+    margin: 0; }
     .header__heading--second {
       font-size: 2.5rem; }
     @media (max-width: 650px) {
       .header__heading {
-        font-size: 3rem; } }
-    @media (max-width: 350px) {
-      .header__heading {
-        font-size: 2.5rem; } }
+        font-size: 10vw; } }
   .header__link {
     -ms-flex-item-align: center;
         -ms-grid-row-align: center;
@@ -455,7 +458,22 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  @media (max-width: 380px) {
+    .owner {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center; } }
   .owner__avatar {
     -ms-flex-negative: 0;
         flex-shrink: 0;
@@ -463,10 +481,22 @@ html {
     max-height: 150px; }
     @media (max-width: 650px) {
       .owner__avatar {
-        min-width: 50px;
-        min-height: 50px; } }
+        max-width: 100px;
+        max-height: 100px; } }
+    @media (max-width: 380px) {
+      .owner__avatar {
+        padding-bottom: 1rem;
+        max-width: 150px;
+        max-height: 150px; } }
+  .owner__bio:empty {
+    display: none; }
+  .owner__name {
+    margin: 0; }
   .owner__text-wrapper {
-    padding: 0 2rem; }
+    padding-left: 2rem; }
+    @media (max-width: 380px) {
+      .owner__text-wrapper {
+        padding: 0; } }
 
 .profile {
   max-width: 720px;
