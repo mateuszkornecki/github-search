@@ -12,19 +12,19 @@ html {
 }
 
 .body {
-    min-height: 100vh;
+    height: 100vh;
     width: 100%;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr;
     grid-template-areas: "first" "second" "third" "forth" "fifth";
-    align-items: center;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     background: $gradient;
     background-repeat: no-repeat;
     background-attachment: fixed;
     &--second {
+        max-height: 100vh;
         grid-template-rows: 200px 1fr minmax(50px, auto);
         grid-template-areas: "first" "second" "third";
     }
@@ -57,24 +57,28 @@ html {
 
 .header {
     grid-area: second;
+    display: flex;
+    justify-content: center;
     &--second {
         grid-area: first;
         height: 100%;
         padding: 2rem 2rem 0;
     }
     &__heading {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-top: -4.5rem;
         font-weight: 700;
         font-size: 4.5rem;
-        margin: 0;
         &--second {
+            font-size: 2.5rem;
+        }
+        @media(max-width: $mobile) {
+            font-size: 3rem;
+        }
+        @media(max-width: 350px) {
             font-size: 2.5rem;
         }
     }
     &__link {
+        align-self: center;
         color: black;
         text-decoration: none;
     }
@@ -83,13 +87,15 @@ html {
 .main {
     height: 100%;
     grid-area: third;
-    min-width: 100%;
-    padding: 2rem 2rem 1rem;
+    max-width: 100vw;
+    width: 100%;
+    padding: 2rem 2rem 2rem;
     &--second {
         display: flex;
         flex-direction: column;
         align-items: center;
         grid-area: second;
+        padding: 2rem 2rem 1rem;
     }
 }
 
@@ -97,8 +103,13 @@ html {
     display: flex;
     margin-bottom: 2rem;
     &__avatar {
+        flex-shrink: 0;
         max-width: 150px;
         max-height: 150px;
+        @media (max-width: $mobile) {
+            min-width: 50px;
+            min-height: 50px;
+        }
     }
     &__text-wrapper {
         padding: 0 2rem;
