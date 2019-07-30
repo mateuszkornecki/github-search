@@ -10,32 +10,44 @@ const profileBuilder = () => {
         .then(resp => resp.json())
         .then(resp => {
             let owner = resp;
-            console.log(owner.login);
-            console.log(owner.name);
-            console.log(owner.avatar_url);
-            //TODO: print repo owner name
-            const ownerSection = document.createElement('section');
-            const ownerName = document.createElement('h2');
-            const ownerAvatar = document.createElement('img');
-            ownerSection.className = 'owner';
-            ownerName.className = 'owner__name';
-            ownerAvatar.className = "owner__avatar";
-            ownerAvatar.src = owner.avatar_url;
-            ownerAvatar.alt = `${owner.name} avatar`;
-            profilePage.appendChild(ownerSection);
-            ownerSection.appendChild(ownerName);
-            ownerSection.appendChild(ownerAvatar);
-            ownerName.innerHTML = owner.name;
-
+            if (owner.name != undefined) {
+                const ownerSection = document.createElement('section');
+                const ownerAvatar = document.createElement('img');
+                const ownerTextWrapper = document.createElement('div');
+                const ownerName = document.createElement('h2');
+                const ownerLogin = document.createElement('span');
+                const ownerBio = document.createElement('p');
+                ownerSection.classList.add('owner', 'owner--js');
+                ownerAvatar.className = 'owner__avatar';
+                ownerTextWrapper.className = 'owner__text-wrapper';
+                ownerName.className = 'owner__name';
+                ownerLogin.className = 'owner__login';
+                ownerBio.className = 'owner__bio';
+                ownerAvatar.src = owner.avatar_url;
+                ownerAvatar.alt = `${owner.name} avatar`;
+                profilePage.appendChild(ownerSection);
+                ownerSection.appendChild(ownerAvatar);
+                ownerSection.appendChild(ownerTextWrapper);
+                ownerTextWrapper.appendChild(ownerName);
+                ownerTextWrapper.appendChild(ownerLogin);
+                ownerTextWrapper.appendChild(ownerBio);
+                ownerName.innerHTML = owner.name;
+                ownerLogin.innerHTML = owner.login;
+                ownerBio.innerHTML = owner.bio;
+            }
         })
         .catch(err => {
             console.log(err);
         })
 
     fetch(`https://api.github.com/users/${localStorage.getItem('User Name')}/repos?sort=full_name&direction=asc`)
-        .then(resp => resp.json())
+
+    .then(resp => resp.json())
         .then(resp => {
             let repos = resp;
+            const repositories = document.createElement('section');
+            repositories.classList.add('repos', 'repos--js');
+            profilePage.appendChild(repositories);
             repos.forEach(repo => {
 
                 const repoSection = document.createElement('section');
@@ -46,7 +58,7 @@ const profileBuilder = () => {
                 repoName.className = 'repo__title';
                 repoDescription.className = 'repo__description';
                 repoLanguage.className = 'repo__language';
-                profilePage.appendChild(repoSection);
+                repositories.appendChild(repoSection);
                 repoSection.appendChild(repoName);
                 repoSection.appendChild(repoDescription);
                 repoSection.appendChild(repoLanguage);
@@ -57,6 +69,7 @@ const profileBuilder = () => {
             })
         })
         .catch(err => {
+            profilePage.innerHTML = '';
             const p = document.createElement('p');
             p.className = 'err';
             profilePage.appendChild(p);
