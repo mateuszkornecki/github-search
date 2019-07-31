@@ -50,25 +50,46 @@ const profileBuilder = () => {
     .then(resp => resp.json())
         .then(resp => {
             let repos = resp;
-            const repositories = document.createElement('section');
+            const repositories = document.createElement('div');
             repositories.classList.add('repos', 'repos--js');
             profilePage.appendChild(repositories);
             repos.forEach(repo => {
                 const repoSection = document.createElement('section');
+                const repoTextWrapper = document.createElement('div');
                 const repoName = document.createElement('h3');
                 const repoDescription = document.createElement('p');
+                const repoFooter = document.createElement('footer');
                 const repoLanguage = document.createElement('span');
+                const repoFooterTextWrapper = document.createElement('div');
+                const repoGithub = document.createElement('a');
+                const repoLive = document.createElement('a');
+
                 repoSection.className = 'repo';
+                repoTextWrapper.className = 'repo__text-wrapper';
                 repoName.className = 'repo__title';
                 repoDescription.className = 'repo__description';
                 repoLanguage.className = 'repo__language';
+                repoFooter.className = 'repo__footer';
+                repoFooterTextWrapper.className = 'repo__footer-text-wrapper';
+                repoGithub.className = 'repo__github';
+                repoLive.className = 'repo__live';
+
                 repositories.appendChild(repoSection);
-                repoSection.appendChild(repoName);
-                repoSection.appendChild(repoDescription);
-                repoSection.appendChild(repoLanguage);
-                repoName.innerHTML = `<a class="repo__link" href="${repo.svn_url}">${repo.name}</a>`;
-                repoLanguage.innerHTML = repo.language;
+                repoSection.appendChild(repoTextWrapper);
+                repoTextWrapper.appendChild(repoName);
+                repoTextWrapper.appendChild(repoDescription);
+                repoSection.appendChild(repoFooter);
+                repoFooter.appendChild(repoLanguage);
+                repoFooter.appendChild(repoFooterTextWrapper);
+                repoFooterTextWrapper.appendChild(repoGithub);
+                repoFooterTextWrapper.appendChild(repoLive);
+
+                repoName.innerHTML = repo.name;
                 repoDescription.innerHTML = repo.description;
+                repoLanguage.innerHTML = repo.language;
+                repoGithub.innerHTML = `<a class="repo__link" href="${repo.svn_url}">Github</a>`;
+                repoLive.innerHTML = `<a class="repo__link" href="${repo.homepage}">Live</a>`;
+
                 localStorage.removeItem('User Name');
             })
         })

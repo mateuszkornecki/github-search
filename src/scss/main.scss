@@ -20,7 +20,6 @@ html {
     //! CSS TRICK solution for 100vh on mobiles
     /* Fallback for browsers that do not support Custom Properties */
     height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -28,6 +27,10 @@ html {
     grid-template-areas: "first" "second" "third" "forth" "fifth";
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+    @media (max-width: $mobile) {
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+    }
     &--second {
         grid-template-rows: 200px 1fr minmax(50px, auto);
         grid-template-areas: "first" "second" "third";
@@ -104,8 +107,11 @@ html {
 
 .owner {
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
     align-items: center;
+    background: white;
+    border-radius: 0.3rem;
     @media(max-width: 380px) {
         flex-direction: column;
         align-items: center;
@@ -146,29 +152,52 @@ html {
     width: 100%;
     height: 100%;
     background: white;
-    border-radius: 0.5rem;
-    padding: 2rem;
+    border-radius: 0.3rem;
+    padding: 1rem;
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
 
 .repos {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 1rem;
+    @media(max-width: $mobile) {
+        grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    }
 }
 
 .repo {
-    border-radius: 0.5rem;
-    padding: 1rem;
-    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    border-radius: 0.3rem;
+    border: 1px solid #EEE;
+    // box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    &__footer {
+        padding: 1rem;
+        background: $orange;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 0 0 0.3rem 0.3rem;
+    }
+    &__language {
+        color: white;
+        font-weight: bold;
+    }
     &__title {
         margin-top: 0;
+    }
+    &__text-wrapper {
+        padding: 1rem;
     }
     &__link {
         text-decoration: none;
         color: #FBB03B;
+        padding-left: 1rem;
+        color: white;
         &:hover {
-            color: #D4145A;
+            color: $pink;
         }
     }
 }
