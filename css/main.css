@@ -427,6 +427,10 @@ html {
     color: black;
     text-decoration: none; }
 
+.language__icon {
+  max-width: 1rem;
+  max-height: 1rem; }
+
 .main {
   -ms-grid-row: 3;
   -ms-grid-column: 1;
@@ -547,6 +551,9 @@ html {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     border-radius: 0 0 0.3rem 0.3rem; }
   .repo__language {
     color: white;
