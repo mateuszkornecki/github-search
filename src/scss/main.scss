@@ -90,6 +90,13 @@ html {
     }
 }
 
+.language {
+    &__icon {
+        max-width: 1rem;
+        max-height: 1rem;
+    }
+}
+
 .main {
     height: 100%;
     grid-area: third;
@@ -179,6 +186,7 @@ html {
         background: $orange;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         border-radius: 0 0 0.3rem 0.3rem;
     }
     &__language {

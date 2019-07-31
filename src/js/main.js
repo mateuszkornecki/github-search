@@ -7,6 +7,7 @@ const profilePage = document.querySelector('.profile--js');
 let vh = window.innerHeight * 0.01;
 // Then we set the value in the --vh custom property to the root of the document
 document.documentElement.style.setProperty('--vh', `${vh}px`);
+
 const profileBuilder = () => {
     profilePage.innerHTML = '';
     searchInput.value = localStorage.getItem('User Name');
@@ -86,11 +87,25 @@ const profileBuilder = () => {
 
                 repoName.innerHTML = repo.name;
                 repoDescription.innerHTML = repo.description;
-                repoLanguage.innerHTML = repo.language;
+
                 repoGithub.innerHTML = `<a class="repo__link" href="${repo.svn_url}">Github</a>`;
                 repoLive.innerHTML = `<a class="repo__link" href="${repo.homepage}">Live</a>`;
-
                 localStorage.removeItem('User Name');
+
+                switch (repo.language) {
+                    case 'HTML':
+                        repoLanguage.innerHTML = `<img class="language__icon" src="assets/img/${repo.language}.png" alt="${repo.language} icon">`
+                        break;
+                    case 'JavaScript':
+                        repoLanguage.innerHTML = `<img class="language__icon" src="assets/img/${repo.language}.png" alt="${repo.language} icon">`
+                        break;
+                    case 'CSS':
+                        repoLanguage.innerHTML = `<img class="language__icon" src="assets/img/${repo.language}.png" alt="${repo.language} icon">`
+                        break;
+                    default:
+                        repoLanguage.innerHTML = repo.language;
+                }
+
             })
         })
         .catch(err => {
