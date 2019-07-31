@@ -327,7 +327,6 @@ html {
 .body {
   /* Fallback for browsers that do not support Custom Properties */
   height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
   width: 100%;
   display: -ms-grid;
   display: grid;
@@ -338,6 +337,10 @@ html {
       grid-template-areas: "first" "second" "third" "forth" "fifth";
   font-family: 'Roboto', sans-serif;
   font-weight: 400; }
+  @media (max-width: 650px) {
+    .body {
+      height: 100vh;
+      height: calc(var(--vh, 1vh) * 100); } }
   .body--second {
     -ms-grid-rows: 200px 1fr minmax(50px, auto);
     grid-template-rows: 200px 1fr minmax(50px, auto);
@@ -459,10 +462,13 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center; }
+          align-items: center;
+  background: white;
+  border-radius: 0.3rem; }
   @media (max-width: 380px) {
     .owner {
       -webkit-box-orient: vertical;
@@ -504,27 +510,56 @@ html {
   width: 100%;
   height: 100%;
   background: white;
-  border-radius: 0.5rem;
-  padding: 2rem;
+  border-radius: 0.3rem;
+  padding: 1rem;
   -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
           box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); }
 
 .repos {
   display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(auto, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-gap: 1rem; }
+  @media (max-width: 650px) {
+    .repos {
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); } }
 
 .repo {
-  border-radius: 0.5rem;
-  padding: 1rem;
-  -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
-          box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28); }
+  border-radius: 0.3rem;
+  border: 1px solid #EEE;
+  background: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
+  .repo__footer {
+    padding: 1rem;
+    background: #FBB03B;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    border-radius: 0 0 0.3rem 0.3rem; }
+  .repo__language {
+    color: white;
+    font-weight: bold; }
   .repo__title {
     margin-top: 0; }
+  .repo__text-wrapper {
+    padding: 1rem; }
   .repo__link {
     text-decoration: none;
-    color: #FBB03B; }
+    color: #FBB03B;
+    padding-left: 1rem;
+    color: white; }
     .repo__link:hover {
       color: #D4145A; }
 
