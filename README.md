@@ -1,9 +1,15 @@
-# wtf-gulp-starter
+# github-search
 
-`npm install -g gulp-cli`
+Feel free to check out the finall [result](https://mateuszkornecki.github.io/hydrapp/).
 
-`npm install`
+## To run the website locally
 
+ **requirements:**
+ - node.js (npm)
+ - gulp <br>
+ 
+ **then, just run:** <br>
+`npm install`<br>
 `gulp`
-
-To publish your page using github pages use `npm run deploy`
+## Build with: 
+- [wtf-gulp-starter](https://github.com/maciejkorsan/wtf-gulp-starter)
