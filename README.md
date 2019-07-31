@@ -1,5 +1,5 @@
 # github-search
-
+Profile search engine for github
 Feel free to check out the finall [result](https://mateuszkornecki.github.io/hydrapp/).
 
 ## To run the website locally
