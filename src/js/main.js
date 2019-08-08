@@ -17,6 +17,7 @@ const profileBuilder = () => {
         .then(resp => {
             let owner = resp;
             if (owner.login != undefined) {
+
                 const ownerSection = document.createElement('section');
                 const ownerAvatar = document.createElement('img');
                 const ownerTextWrapper = document.createElement('div');
@@ -63,8 +64,14 @@ const profileBuilder = () => {
                 const repoLanguage = document.createElement('span');
                 const repoFooterTextWrapper = document.createElement('div');
                 const repoGithub = document.createElement('a');
-                const repoLive = document.createElement('a');
 
+                //Display 'Live' only if it exist
+                if (repo.homepage) {
+                    const repoLive = document.createElement('a');
+                    repoLive.className = 'repo__live';
+                    repoFooterTextWrapper.appendChild(repoLive);
+                    repoLive.innerHTML = `<a class="repo__link" href="${repo.homepage}">Live</a>`;
+                }
                 repoSection.className = 'repo';
                 repoTextWrapper.className = 'repo__text-wrapper';
                 repoName.className = 'repo__title';
@@ -73,7 +80,7 @@ const profileBuilder = () => {
                 repoFooter.className = 'repo__footer';
                 repoFooterTextWrapper.className = 'repo__footer-text-wrapper';
                 repoGithub.className = 'repo__github';
-                repoLive.className = 'repo__live';
+
 
                 repositories.appendChild(repoSection);
                 repoSection.appendChild(repoTextWrapper);
@@ -83,13 +90,13 @@ const profileBuilder = () => {
                 repoFooter.appendChild(repoLanguage);
                 repoFooter.appendChild(repoFooterTextWrapper);
                 repoFooterTextWrapper.appendChild(repoGithub);
-                repoFooterTextWrapper.appendChild(repoLive);
+
 
                 repoName.innerHTML = repo.name;
                 repoDescription.innerHTML = repo.description;
 
                 repoGithub.innerHTML = `<a class="repo__link" href="${repo.svn_url}">Github</a>`;
-                repoLive.innerHTML = `<a class="repo__link" href="${repo.homepage}">Live</a>`;
+
                 localStorage.removeItem('User Name');
 
                 switch (repo.language) {
